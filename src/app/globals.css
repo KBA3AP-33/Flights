@@ -2,22 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .transfer-count {
+    &::before,
+    &::after {
+        content: "";
+        width: 100%;
+        border-top: 1px solid lightgray;
+        margin: 0 15px;
+        transform: translateY(2px);
+    }
+
+    &:not(:has(*))::before {
+        margin-right: 0;
+    }
+
+    &:not(:has(*))::after {
+        margin-left: 0;
+    }
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
 }
 
 @layer utilities {
